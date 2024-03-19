@@ -6,6 +6,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: #219ebc;
   }
 
   #main{
@@ -18,9 +19,30 @@
 
   #main > div{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    
+    background-color: white;
+    border-radius: 20px;
+    padding: 15px;
   }
 
   #currentCont{
     grid-column: 1 / -1;
+    align-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 20px;
+  }
+
+  #curtitle{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  }
+
+  #locIn{
+    border-radius: 5px;
+  }
+
+  #btnLoc{
+    font-size: 14px;
+    margin: 4px;
   }
