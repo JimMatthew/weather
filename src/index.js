@@ -5,8 +5,7 @@ updateCurrent('minneapolis');
 init();
 
  function init() {
-    const changeBtn = document.querySelector('#btnLoc');
-    changeBtn.addEventListener('click', function(){
+    document.querySelector('#btnLoc').addEventListener('click', function(){
         const currentLocation = document.querySelector('#locIn').value;
         updateCurrent(currentLocation);
     });
@@ -47,28 +46,17 @@ function futureForcast(forecast) {
     const icon = document.createElement('img');
     icon.src = `http://${day.condition.icon}`;
 
-    const title = createInfoElement('div', date);
-    const condition = createInfoElement('div', day.condition.text);
-    const minTemp = createInfoElement('Min Temp',`${day.mintemp_f}°F`);
-    const maxTemp = createInfoElement('Max Temp', `${day.maxtemp_f}°F`);
-    const avgTemp = createInfoElement('Avg. Temp', `${day.avgtemp_f}°F`);
-    const precip = createInfoElement('Total Precipitation', `${day.totalprecip_in} in.`);
-    const chancerain = createInfoElement('Chance of Rain', `${day.daily_chance_of_rain}%`);
-    const chancesnow = createInfoElement('Chance of Snow', `${day.daily_chance_of_snow}%`);
-    const sunrise = createInfoElement('Sunrise', astro.sunrise);
-    const sunset = createInfoElement('Sunset', astro.sunset);
-
-    container.appendChild(title);
+    container.appendChild(createInfoElement('', date));
     container.appendChild(icon);
-    container.appendChild(condition);
-    container.appendChild(minTemp);
-    container.appendChild(avgTemp);
-    container.appendChild(maxTemp);
-    container.appendChild(precip);
-    container.appendChild(chancerain);
-    container.appendChild(chancesnow);
-    container.appendChild(sunrise);
-    container.appendChild(sunset);
+    container.appendChild(createInfoElement('', day.condition.text));
+    container.appendChild(createInfoElement('Min Temp',`${day.mintemp_f}°F`));
+    container.appendChild(createInfoElement('Avg. Temp', `${day.avgtemp_f}°F`));
+    container.appendChild(createInfoElement('Max Temp', `${day.maxtemp_f}°F`));
+    container.appendChild(createInfoElement('Total Precipitation', `${day.totalprecip_in} in.`));
+    container.appendChild(createInfoElement('Chance of Rain', `${day.daily_chance_of_rain}%`));
+    container.appendChild(createInfoElement('Chance of Snow', `${day.daily_chance_of_snow}%`));
+    container.appendChild(createInfoElement('Sunrise', astro.sunrise));
+    container.appendChild(createInfoElement('Sunset', astro.sunset));
     return container;
 }
 
@@ -87,22 +75,15 @@ function currentDisplay(current) {
 
     cur.textContent = current.current.condition.text;
 
-    const temp = createInfoElement('Temperature', `${current.current.temp_f}°F`, 'currtemp');
-    const feels = createInfoElement('Feels like', `${current.current.feelslike_f}°F`);
-    const humid = createInfoElement('Humidity', `${current.current.humidity}%`);
-    const precip = createInfoElement('Precipitation', `${current.current.precip_in} in.`);
-    const wind = createInfoElement('Wind speed', `${current.current.wind_mph} mph`);
-    const lastUp = createInfoElement('Last updated', current.current.last_updated);
-
     main.appendChild(title);
     main.appendChild(icon);
     main.appendChild(cur);
-    main.appendChild(temp);
-    main.appendChild(feels);
-    main.appendChild(humid);
-    main.appendChild(precip);
-    main.appendChild(wind);
-    main.appendChild(lastUp);
+    main.appendChild(createInfoElement('Temperature', `${current.current.temp_f}°F`, 'currtemp'));
+    main.appendChild(createInfoElement('Feels like', `${current.current.feelslike_f}°F`));
+    main.appendChild(createInfoElement('Humidity', `${current.current.humidity}%`));
+    main.appendChild(createInfoElement('Precipitation', `${current.current.precip_in} in.`));
+    main.appendChild(createInfoElement('Wind speed', `${current.current.wind_mph} mph`));
+    main.appendChild(createInfoElement('Last updated', current.current.last_updated));
 
     return main;
 }
