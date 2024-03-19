@@ -53,29 +53,14 @@ function futureForcast(forecast) {
     const icon = document.createElement('img');
     icon.src = `http://${day.condition.icon}`;
 
-    const minTemp = document.createElement('div');
-    minTemp.textContent = `Min Temp: ${day.mintemp_f}°F`;
-
-    const maxTemp = document.createElement('div');
-    maxTemp.textContent = `Max Temp: ${day.maxtemp_f}°F`;
-
-    const avgTemp = document.createElement('div');
-    avgTemp.textContent = `Avg. Temp: ${day.avgtemp_f}°F`;
-
-    const precip = document.createElement('div');
-    precip.textContent = `Total Precipitation: ${day.totalprecip_in} in.`;
-
-    const chancerain = document.createElement('div');
-    chancerain.textContent = `Chance of Rain: ${day.daily_chance_of_rain}%`;
-
-    const chancesnow = document.createElement('div');
-    chancesnow.textContent = `Chance of Snow: ${day.daily_chance_of_snow}%`;
-
-    const sunrise = document.createElement('div');
-    sunrise.textContent = `Sunrise: ${astro.sunrise}`;
-
-    const sunset = document.createElement('div');
-    sunset.textContent = `Sunset: ${astro.sunset}`;
+    const minTemp = createInfoElement('Min Temp',`${day.mintemp_f}°F`);
+    const maxTemp = createInfoElement('Max Temp', `${day.maxtemp_f}°F`);
+    const avgTemp = createInfoElement('Avg. Temp', `${day.avgtemp_f}°F`);
+    const precip = createInfoElement('Total Precipitation', `${day.totalprecip_in} in.`);
+    const chancerain = createInfoElement('Chance of Rain', `${day.daily_chance_of_rain}%`);
+    const chancesnow = createInfoElement('Chance of Snow', `${day.daily_chance_of_snow}%`);
+    const sunrise = createInfoElement('Sunrise', astro.sunrise);
+    const sunset = createInfoElement('Sunset', astro.sunset);
 
     container.appendChild(title);
     container.appendChild(icon);
