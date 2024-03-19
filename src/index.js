@@ -44,15 +44,11 @@ function futureForcast(forecast) {
     const container = document.createElement('div');
     container.classList.add('forecastCont');
 
-    const title = document.createElement('div');
-    title.textContent = date;
-
-    const condition = document.createElement('div');
-    condition.textContent = day.condition.text;
-
     const icon = document.createElement('img');
     icon.src = `http://${day.condition.icon}`;
 
+    const title = createInfoElement('div', date);
+    const condition = createInfoElement('div', day.condition.text);
     const minTemp = createInfoElement('Min Temp',`${day.mintemp_f}°F`);
     const maxTemp = createInfoElement('Max Temp', `${day.maxtemp_f}°F`);
     const avgTemp = createInfoElement('Avg. Temp', `${day.avgtemp_f}°F`);
