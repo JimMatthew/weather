@@ -1,13 +1,12 @@
 import _ from 'lodash';
 import './style.css';
 
-updateCurrent('minneapolis');
+updateWeather('minneapolis');
 init();
 
  function init() {
     document.querySelector('#btnLoc').addEventListener('click', function(){
-        const currentLocation = document.querySelector('#locIn').value;
-        updateCurrent(currentLocation);
+        updateWeather(document.querySelector('#locIn').value);
     });
  }
 
@@ -16,19 +15,17 @@ init();
         const url = 'http://api.weatherapi.com/v1/forecast.json?key=af3436b6fe1c473abcb31303241803&q='+location+'&days=3&aqi=no&alerts=no'
         const response = await fetch(url, {mode: 'cors'});
         const data = await response.json();
-        console.log(data);
-        console.log('current: '+ data.current.condition.text);
         return data;
     } catch(error) {
 
     }
  }
 
- function updateCurrent(location){
+ function updateWeather(location) {
     fetchWeather(location).then(c => updateDisplay(c));
  }
 
-function updateDisplay(data){
+function updateDisplay(data) {
     const main = document.querySelector('#main');
     main.innerHTML = '';
     main.appendChild(currentDisplay(data));
@@ -69,11 +66,10 @@ function currentDisplay(current) {
 
     const cur = document.createElement('div');
     cur.id = 'currweather';
+    cur.textContent = current.current.condition.text;
 
     const icon = document.createElement('img');
     icon.src = `http://${current.current.condition.icon}`;
-
-    cur.textContent = current.current.condition.text;
 
     main.appendChild(title);
     main.appendChild(icon);
@@ -84,7 +80,6 @@ function currentDisplay(current) {
     main.appendChild(createInfoElement('Precipitation', `${current.current.precip_in} in.`));
     main.appendChild(createInfoElement('Wind speed', `${current.current.wind_mph} mph`));
     main.appendChild(createInfoElement('Last updated', current.current.last_updated));
-
     return main;
 }
 
