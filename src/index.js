@@ -12,7 +12,7 @@ init();
 
  async function fetchWeather(location) {
     try{
-        const url = 'http://api.weatherapi.com/v1/forecast.json?key=af3436b6fe1c473abcb31303241803&q='+location+'&days=3&aqi=no&alerts=no'
+        const url = 'https://api.weatherapi.com/v1/forecast.json?key=af3436b6fe1c473abcb31303241803&q='+location+'&days=3&aqi=no&alerts=no'
         const response = await fetch(url, {mode: 'cors'});
         const data = await response.json();
         return data;
@@ -41,7 +41,7 @@ function futureForcast(forecast) {
     container.classList.add('forecastCont');
 
     const icon = document.createElement('img');
-    icon.src = `http://${day.condition.icon}`;
+    icon.src = `https://${day.condition.icon}`;
 
     container.appendChild(createInfoElement('', date));
     container.appendChild(icon);
@@ -69,7 +69,7 @@ function currentDisplay(current) {
     cur.textContent = current.current.condition.text;
 
     const icon = document.createElement('img');
-    icon.src = `http://${current.current.condition.icon}`;
+    icon.src = `https://${current.current.condition.icon}`;
 
     main.appendChild(title);
     main.appendChild(icon);
